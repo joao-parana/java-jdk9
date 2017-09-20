@@ -16,7 +16,25 @@ A Docker image for use as a JShell playground
 
 ## Open a JShell session
 
-    import java.util.stream.*
-    IntStream.range(0, 10).map(x->x*x).forEach(System.out::println)
-    /save script-01.repl 
-    /exit
+No conteiner Docker execute:
+
+```bash
+jshell
+```
+
+Na console do JShell execute:
+
+```java
+import java.util.stream.*
+IntStream.range(-9, 10).mapToObj(x -> Math.pow(Math.E, x)).forEach(System.out::println)
+Stream<Double> fStream = IntStream.range(-5, 6).mapToObj(x -> 1.0 / (1 + Math.pow(Math.E, x))) 
+fStream.forEach(System.out::println)
+/save script-01.repl 
+/exit
+```
+
+De volta ao terminal BASH do conteiner Docker execute:
+
+```bash
+cat script-01.repl && echo "" && echo ""
+```
